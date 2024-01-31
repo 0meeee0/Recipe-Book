@@ -12,51 +12,28 @@
   <meta name="description" content="" />
   <meta name="author" content="" />
 
-  <title>Delfood</title>
+  <title>RecipeBook</title>
 
   @include('layouts.head')
 
 </head>
 
 <body>
-
   <div class="hero_area">
     <!-- header section strats -->
     <header class="header_section">
       <div class="container-fluid">
         <nav class="navbar navbar-expand-lg custom_nav-container">
-          <a class="navbar-brand" href="index.php">
+          <a class="navbar-brand mx-auto" href="index.php">
             <span>
-              Delfood
+              RecipeBook
             </span>
           </a>
-          <div class="" id="">
-            <div class="User_option">
-              <a href="">
-                <i class="fa fa-user" aria-hidden="true"></i>
-                <span>Login</span>
-              </a>
-              <form class="form-inline ">
-                <input type="search" placeholder="Search" />
-                <button class="btn  nav_search-btn" type="submit">
-                  <i class="fa fa-search" aria-hidden="true"></i>
-                </button>
-              </form>
-            </div>
-            <div class="custom_menu-btn">
-              <button onclick="openNav()">
-                <img src="images/menu.png" alt="">
-              </button>
-            </div>
-            <div id="myNav" class="overlay">
-              <div class="overlay-content">
-                <a href="index.html">Home</a>
-                <a href="about.html">About</a>
-                <a href="blog.html">Blog</a>
-                <a href="testimonial.html">Testimonial</a>
-              </div>
-            </div>
-          </div>
+          <a class="navbar-brand mx-auto" href="create">
+            <span class="text-warning">
+              +
+            </span>
+          </a>
         </nav>
       </div>
     </header>
@@ -69,11 +46,11 @@
           <div class="col-lg-10 mx-auto">
             <div class="detail-box">
               <h1>
-                Discover Restuarant And Food
+                Discover Our Recipes
               </h1>
-              <p>
+              <!-- <p>
                 when looking at its layout. The point of using Lorem Ipsum
-              </p>
+              </p> -->
             </div>
             <div class="find_container ">
               <div class="container">
@@ -82,13 +59,7 @@
                     <form>
                       <div class="form-row ">
                         <div class="form-group col-lg-5">
-                          <input type="text" class="form-control" id="inputHotel" placeholder="Restaurant Name">
-                        </div>
-                        <div class="form-group col-lg-3">
-                          <input type="text" class="form-control" id="inputLocation" placeholder="All Locations">
-                          <span class="location_icon">
-                            <i class="fa fa-map-marker" aria-hidden="true"></i>
-                          </span>
+                          <input type="text" class="form-control" id="inputHotel" placeholder="Search for a Recipe">
                         </div>
                         <div class="form-group col-lg-3">
                           <div class="btn-box">
@@ -104,51 +75,7 @@
           </div>
         </div>
       </div>
-      <div class="slider_container">
-        <div class="item">
-          <div class="img-box">
-          <img src="{{ asset('assets/images/slider-img1.png') }}" alt="" />
-
-          </div>
-        </div>
-        <div class="item">
-          <div class="img-box">
-            <img src="resources\images\slider-img2.png" alt="" />
-          </div>
-        </div>
-        <div class="item">
-          <div class="img-box">
-            <img src="resources\images\slider-img3.png" alt="" />
-          </div>
-        </div>
-        <div class="item">
-          <div class="img-box">
-            <img src="images/slider-img4.png" alt="" />
-          </div>
-        </div>
-        <div class="item">
-          <div class="img-box">
-            <img src="resources\images\slider-img1.png" alt="" />
-          </div>
-        </div>
-        <div class="item">
-          <div class="img-box">
-            <img src="resources\images\slider-img2.png" alt="" />
-          </div>
-        </div>
-        <div class="item">
-          <div class="img-box">
-            <img src="resources\images\slider-img3.png" alt="" />
-          </div>
-        </div>
-        <div class="item">
-          <div class="img-box">
-            <img src="resources\images\slider-img4.png" alt="" />
-          </div>
-        </div>
-      </div>
     </section>
-    <!-- end slider section -->
   </div>
 
 
@@ -158,55 +85,61 @@
     <div class="container">
       <div class="heading_container heading_center">
         <h2>
-          Our Best Popular Recipes
+          Our Recipes
         </h2>
       </div>
       <div class="row">
-        <div class="col-sm-6 col-md-4 mx-auto">
-          <div class="box">
-            <div class="img-box">
-              <img src="images/r1.jpg" class="box-img" alt="">
-            </div>
-            <div class="detail-box">
-              <h4>
-                Breakfast
-              </h4>
-              <a href="">
-                <i class="fa fa-arrow-right" aria-hidden="true"></i>
-              </a>
+        @foreach($recipes as $r)
+          <div class="col-sm-6 col-md-4 mx-auto">
+              <div class="box">
+                <div class="img-box">
+                      <img src="{{ asset('assets/images/r1.jpg') }}" class="box-img" alt="">
+                  </div>
+                  <div class="detail-box">
+                      <h4>
+                          {{ $r->name }}
+                      </h4>
+                      <a href="#" data-toggle="modal" data-target="#recipeModal{{ $r->id }}">
+                          👁️
+                      </a>
+                  </div>
+                </div>
+          </div>
+
+        <!-- Modal -->
+        <div class="modal fade" id="recipeModal{{ $r->id }}" tabindex="-1" role="dialog" aria-labelledby="recipeModalLabel{{ $r->id }}" aria-hidden="true">
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h2 class="modal-title" id="recipeModalLabel{{ $r->id }}">✨🍽️<em>{{ $r->name }}</em>🍽️✨</h2>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <img src="{{ asset('assets/images/r1.jpg') }}" class="img-fluid" alt="{{ $r->name }}">
+                            </div>
+                            <div class="col-md-6">
+                                <p>{{ $r->description }}</p>
+                                <p> <b> Category: </b>{{ $r->category }}</p>
+                                <p> <b> Ingredients: </b>{{ $r->ingredients }}</p>
+                                <p> <b> Instructions: </b>{{ $r->instructions }}</p>
+                                <!-- Add other details as needed -->
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                      <div>
+                        <a class="btn btn-outline-primary text-white">✍</a>
+                        <a class="btn btn-outline-danger">❌</a>
+                      </div>
+                    </div>
+                </div>
             </div>
           </div>
-        </div>
-        <div class="col-sm-6 col-md-4 mx-auto">
-          <div class="box">
-            <div class="img-box">
-              <img src="images/r2.jpg" class="box-img" alt="">
-            </div>
-            <div class="detail-box">
-              <h4>
-                Lunch
-              </h4>
-              <a href="">
-                <i class="fa fa-arrow-right" aria-hidden="true"></i>
-              </a>
-            </div>
-          </div>
-        </div>
-        <div class="col-sm-6 col-md-4 mx-auto">
-          <div class="box">
-            <div class="img-box">
-              <img src="images/r3.jpg" class="box-img" alt="">
-            </div>
-            <div class="detail-box">
-              <h4>
-                Dinner
-              </h4>
-              <a href="">
-                <i class="fa fa-arrow-right" aria-hidden="true"></i>
-              </a>
-            </div>
-          </div>
-        </div>
+        @endforeach
       </div>
       <div class="btn-box">
         <a href="">
@@ -218,46 +151,7 @@
 
   <!-- end recipe section -->
 
-  <!-- app section -->
-
-  <section class="app_section">
-    <div class="container">
-      <div class="col-md-9 mx-auto">
-        <div class="row">
-          <div class="col-md-7 col-lg-8">
-            <div class="detail-box">
-              <h2>
-                <span> Get the</span> <br>
-                Delfood App
-              </h2>
-              <p>
-                long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The poin
-              </p>
-              <div class="app_btn_box">
-                <a href="" class="mr-1">
-                  <img src="images/google_play.png" class="box-img" alt="">
-                </a>
-                <a href="">
-                  <img src="images/app_store.png" class="box-img" alt="">
-                </a>
-              </div>
-              <a href="" class="download_btn">
-                Download Now
-              </a>
-            </div>
-          </div>
-          <div class="col-md-5 col-lg-4">
-            <div class="img-box">
-              <img src="images/mobile.png" class="box-img" alt="">
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-  </section>
-
-  <!-- end app section -->
+  
 
   <!-- about section -->
 
@@ -290,181 +184,17 @@
 
   <!-- end about section -->
 
-  <!-- news section -->
-
-  <section class="news_section">
-    <div class="container">
-      <div class="heading_container heading_center">
-        <h2>
-          Latest News
-        </h2>
-      </div>
-      <div class="row">
-        <div class="col-md-6">
-          <div class="box">
-            <div class="img-box">
-              <img src="images/n1.jpg" class="box-img" alt="">
-            </div>
-            <div class="detail-box">
-              <h4>
-                Tasty Food For you
-              </h4>
-              <p>
-                there isn't anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined
-              </p>
-              <a href="">
-                <i class="fa fa-arrow-right" aria-hidden="true"></i>
-              </a>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-6">
-          <div class="box">
-            <div class="img-box">
-              <img src="images/n2.jpg" class="box-img" alt="">
-            </div>
-            <div class="detail-box">
-              <h4>
-                Breakfast For you
-              </h4>
-              <p>
-                there isn't anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined
-              </p>
-              <a href="">
-                <i class="fa fa-arrow-right" aria-hidden="true"></i>
-              </a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- end news section -->
-
-  <!-- client section -->
-
-  <section class="client_section layout_padding">
-    <div class="container">
-      <div class="col-md-11 col-lg-10 mx-auto">
-        <div class="heading_container heading_center">
-          <h2>
-            Testimonial
-          </h2>
-        </div>
-        <div id="customCarousel1" class="carousel slide" data-ride="carousel">
-          <div class="carousel-inner">
-            <div class="carousel-item active">
-              <div class="detail-box">
-                <h4>
-                  Virginia
-                </h4>
-                <p>
-                  Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and
-                </p>
-                <i class="fa fa-quote-left" aria-hidden="true"></i>
-              </div>
-            </div>
-            <div class="carousel-item">
-              <div class="detail-box">
-                <h4>
-                  Virginia
-                </h4>
-                <p>
-                  Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and
-                </p>
-                <i class="fa fa-quote-left" aria-hidden="true"></i>
-              </div>
-            </div>
-            <div class="carousel-item">
-              <div class="detail-box">
-                <h4>
-                  Virginia
-                </h4>
-                <p>
-                  Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and
-                </p>
-                <i class="fa fa-quote-left" aria-hidden="true"></i>
-              </div>
-            </div>
-          </div>
-          <a class="carousel-control-prev d-none" href="#customCarousel1" role="button" data-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="sr-only">Previous</span>
-          </a>
-          <a class="carousel-control-next" href="#customCarousel1" role="button" data-slide="next">
-            <i class="fa fa-arrow-right" aria-hidden="true"></i>
-            <span class="sr-only">Next</span>
-          </a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- end client section -->
-
   <div class="footer_container">
-    <!-- info section -->
-    <section class="info_section ">
-      <div class="container">
-        <div class="contact_box">
-          <a href="">
-            <i class="fa fa-map-marker" aria-hidden="true"></i>
-          </a>
-          <a href="">
-            <i class="fa fa-phone" aria-hidden="true"></i>
-          </a>
-          <a href="">
-            <i class="fa fa-envelope" aria-hidden="true"></i>
-          </a>
-        </div>
-        <div class="info_links">
-          <ul>
-            <li class="active">
-              <a href="index.html">
-                Home
-              </a>
-            </li>
-            <li>
-              <a href="about.html">
-                About
-              </a>
-            </li>
-            <li>
-              <a class="" href="blog.html">
-                Blog
-              </a>
-            </li>
-            <li>
-              <a class="" href="testimonial.html">
-                Testimonial
-              </a>
-            </li>
-          </ul>
-        </div>
-        <div class="social_box">
-          <a href="">
-            <i class="fa fa-facebook" aria-hidden="true"></i>
-          </a>
-          <a href="">
-            <i class="fa fa-twitter" aria-hidden="true"></i>
-          </a>
-          <a href="">
-            <i class="fa fa-linkedin" aria-hidden="true"></i>
-          </a>
-        </div>
-      </div>
-    </section>
-    <!-- end info_section -->
+    
 
 
     <!-- footer section -->
     <footer class="footer_section">
       <div class="container">
         <p>
-          &copy; <span id="displayYear"></span> All Rights Reserved By
-          <a href="https://html.design/">Free Html Templates</a><br>
-          Distributed By: <a href="https://themewagon.com/">ThemeWagon</a>
+          <br>
+          RecipeBook
+          &copy; <span id="displayYear"></span> All Rights Reserved
         </p>
       </div>
     </footer>

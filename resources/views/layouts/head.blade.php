@@ -17,3 +17,5 @@
 <link href="{{ asset('assets/css/style.css') }}" rel="stylesheet" />
 <!-- responsive style -->
 <link href="{{ asset('assets/css/responsive.css') }}" rel="stylesheet" />
+
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">

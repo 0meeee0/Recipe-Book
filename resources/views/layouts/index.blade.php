@@ -56,18 +56,18 @@
               <div class="container">
                 <div class="row">
                   <div class="col">
-                    <form>
-                      <div class="form-row ">
-                        <div class="form-group col-lg-5">
-                          <input type="text" class="form-control" id="inputHotel" placeholder="Search for a Recipe">
-                        </div>
-                        <div class="form-group col-lg-3">
-                          <div class="btn-box">
-                            <button type="submit" class="btn ">Search</button>
+                    <form method="GET" action="{{ route('search') }}" class="mb-4">
+                      <div class="form-row">
+                          <div class="form-group col-lg-5">
+                              <input type="text" class="form-control" name="query" placeholder="Search for a Recipe Name or Category">
                           </div>
-                        </div>
+                          <div class="form-group col-lg-3">
+                              <div class="btn-box">
+                                  <button type="submit" class="btn">Search</button>
+                              </div>
+                          </div>
                       </div>
-                    </form>
+                  </form>
                   </div>
                 </div>
               </div>

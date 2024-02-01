@@ -25,3 +25,4 @@ Route::post('/store', [RecipeController::class, 'store'])->name('store');
 Route::get('/edit/{Recette}', [RecipeController::class, 'edit'])->name('edit');
 Route::put('/update/{Recette}', [RecipeController::class, 'update'])->name('update');
 Route::delete('/delete/{Recette}', [RecipeController::class, 'delete'])->name('delete');
+Route::get('/recipes/search', [RecipeController::class, 'search'])->name('search');

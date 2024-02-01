@@ -66,4 +66,20 @@ class RecipeController extends Controller
         $recipe->delete();
         return redirect('/');
     }
+
+    public function search(Request $request)
+    {
+        $query = $request->input('query');
+        $recipesQuery = Recette::query();
+
+        if ($query) {
+            $recipesQuery->where(function ($queryBuilder) use ($query) {
+                $queryBuilder->where('name', 'like', '%' . $query . '%')
+                            ->orWhere('category', 'like', '%' . $query . '%');
+            });
+        }
+
+        $recipes = $recipesQuery->get();
+        return view('layouts.index', compact('recipes'));
+    }
 }

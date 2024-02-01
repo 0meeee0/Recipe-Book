@@ -132,8 +132,12 @@
                     </div>
                     <div class="modal-footer">
                       <div>
-                        <a class="btn btn-outline-primary text-white">✍</a>
-                        <a class="btn btn-outline-danger">❌</a>
+                        <a class="btn btn-outline-primary" href="{{route('edit', ['Recette' => $r])}}" >✍ Edit</a>
+                        <form method="POST" action="{{ route('delete', ['Recette' => $r->id]) }}" onsubmit="return confirm('Are you sure you want to delete this recipe?');">
+                              @csrf
+                              @method('DELETE')
+                            <button type="submit" class="btn btn-outline-danger">❌ Delete</button>
+                        </form>
                       </div>
                     </div>
                 </div>
@@ -141,11 +145,11 @@
           </div>
         @endforeach
       </div>
-      <div class="btn-box">
+      <!-- <div class="btn-box">
         <a href="">
           Order Now
         </a>
-      </div>
+      </div> -->
     </div>
   </section>
 
@@ -171,7 +175,10 @@
           </div>
           <div class="detail-box">
             <p>
-              Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable
+              
+              Welcome to Recipe Book, your online haven for sharing and discovering delightful recipes!
+               Whether you're a seasoned chef or a novice in the kitchen, our platform is a community-driven space where culinary enthusiasts come together to exchange, inspire, and indulge in the art of cooking. Join us on this flavorful journey, where every recipe tells a unique story, and each shared dish adds a pinch of joy to our collective cookbook.
+              Cheers to a community united by a love for great food!
             </p>
             <a href="">
               <i class="fa fa-arrow-right" aria-hidden="true"></i>

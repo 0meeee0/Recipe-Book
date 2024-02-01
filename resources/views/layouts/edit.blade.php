@@ -22,12 +22,12 @@
         </header>
     </div>
 
-    <div class="container-fluid col-md-6">
+    <!-- <div class="container-fluid col-md-6">
       <img class="img-fluid d-flex mx-auto" src="{{ asset('assets/images/about-img.jpg') }}" alt="">
-    </div>
+    </div> -->
     <div class="container">
       <div class="heading_container heading_center">
-        <h2 id="here">Create a New Recipe</h2>
+        <h2 id="here">Edit Recipe</h2>
       </div>
         <div>
             @if($errors->any())
@@ -42,32 +42,32 @@
         </div>
 
         <div class="container">
-          <form class="col-9 mx-auto" method="POST" action="{{route('store')}}" enctype="multipart/form-data">
+          <form class="col-9 mx-auto" method="POST" action="{{route('update',$recipe->id)}}" enctype="multipart/form-data">
               @csrf
-              @method('post')
+              @method('put')
               <div class="form-group">
                   <label for="name">Name:</label>
-                  <input type="text" name="name" id="name" class="form-control" required>
+                  <input type="text" name="name" id="name" class="form-control" value="{{$recipe->name}}" required>
               </div>
 
               <div class="form-group">
                   <label for="description">Description:</label>
-                  <textarea name="description" id="description" class="form-control" required></textarea>
+                  <textarea name="description" id="description" class="form-control" value="" required>{{$recipe->description}}</textarea>
               </div>
 
               <div class="form-group">
                   <label for="ingredients">Ingredients:</label>
-                  <textarea name="ingredients" id="ingredients" class="form-control" required></textarea>
+                  <textarea name="ingredients" id="ingredients" class="form-control" required>{{$recipe->ingredients}}</textarea>
               </div>
 
               <div class="form-group">
                   <label for="instructions">Instructions:</label>
-                  <textarea name="instructions" id="instructions" class="form-control" required></textarea>
+                  <textarea name="instructions" id="instructions" class="form-control" required>{{$recipe->instructions}}</textarea>
               </div>
 
               <div class="form-group">
                   <label for="category">Category:</label>
-                  <input type="text" name="category" id="category" class="form-control" required>
+                  <input type="text" name="category" id="category" class="form-control" value="{{$recipe->category}}" required>
               </div>
 
               <div class="form-group">
@@ -75,7 +75,7 @@
                   <input type="file" name="image" id="image" class="form-control" accept="image/*">
               </div>
 
-              <button type="submit" class="btn btn-primary">Submit</button>
+              <button type="submit" class="btn btn-primary">Update</button>
           </form>
         </div>
     </div>

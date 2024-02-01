@@ -36,4 +36,34 @@ class RecipeController extends Controller
         return redirect('/');
 
     }
+
+    public function edit( $recipe){
+        // dd($recipe);
+        
+        $recipe = Recette::find($recipe);
+        // dd($recipe);
+        return view('layouts.edit', compact('recipe'));
+    }
+
+    public function update($Recette, Request $request){
+            $recipe = Recette::find($Recette);
+            
+            $data = $request->validate([
+            'name' => 'required',
+            'description' => 'required',
+            'ingredients' => 'required',
+            'instructions' => 'required',
+            'category' => 'required',
+            'image' => 'required'
+        ]);
+
+        $recipe->update($data);
+        return redirect('/');
+    }
+
+    public function delete($Recette){
+        $recipe = Recette::find($Recette);
+        $recipe->delete();
+        return redirect('/');
+    }
 }

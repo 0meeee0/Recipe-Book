@@ -67,7 +67,7 @@
                               </div>
                           </div>
                       </div>
-                  </form>
+                    </form>
                   </div>
                 </div>
               </div>
@@ -93,7 +93,7 @@
           <div class="col-sm-6 col-md-4 mx-auto">
               <div class="box">
                 <div class="img-box">
-                      <img src="{{ asset('assets/images/r1.jpg') }}" class="box-img" alt="">
+                      <img src="{{ asset('storage/' . $r->image) }}" class="box-img" alt="">
                   </div>
                   <div class="detail-box">
                       <h4>
@@ -119,14 +119,13 @@
                     <div class="modal-body">
                         <div class="row">
                             <div class="col-md-6">
-                                <img src="{{ asset('assets/images/r1.jpg') }}" class="img-fluid" alt="{{ $r->name }}">
+                                <img src="{{ asset('storage/' . $r->image) }}" class="img-fluid" alt="{{ $r->name }}">
                             </div>
                             <div class="col-md-6">
                                 <p>{{ $r->description }}</p>
                                 <p> <b> Category: </b>{{ $r->category }}</p>
-                                <p> <b> Ingredients: </b>{{ $r->ingredients }}</p>
+                                <p> <b> Ingredients: </b><br>{{ $r->ingredients }}</p>
                                 <p> <b> Instructions: </b>{{ $r->instructions }}</p>
-                                <!-- Add other details as needed -->
                             </div>
                         </div>
                     </div>
